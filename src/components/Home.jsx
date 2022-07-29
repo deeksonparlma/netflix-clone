@@ -6,9 +6,11 @@ import Nav from './Nav'
 import TopFeature from './TopFeature'
 
 function Home() {
+    document.title ="Netflix | Home"
+
     return (
         <div style={{ background: 'black' }}>
-            <Nav />
+            {/* <Nav /> */}
 
             <div className="top-section">
 

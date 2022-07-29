@@ -1,15 +1,28 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Nav = () => {
   return (
     <div>
       <div className="nav">
         <div className='logo'>
-          <img src="netflix-logo.png" alt="logo" />
+          <NavLink
+            to={'/'}
+            exact
+          >
+            <img src="netflix-logo.png" alt="logo" />
+
+          </NavLink>
         </div>
 
         <div className="auth">
-          <button className="sign-in btn btn-danger">Sign In</button>
+          <NavLink
+            to={'/authentication'}
+            axact
+          >
+            <button className="sign-in btn btn-danger" style={{background:'red'}}>Sign In</button>
+
+          </NavLink>
         </div>
       </div>
     </div>

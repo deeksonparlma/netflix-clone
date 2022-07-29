@@ -10,7 +10,7 @@ function JoinForm() {
             <form className='join-form form-group' action="" method="post">
                 <div className="row">
                     <div className="inp col-md-8">
-                        <input type="text" style={{ borderRadius: '0px' }} className='form-control' placeholder='Email address' />
+                        <input type="text" style={{ borderRadius: '4px' }} className='form-control' placeholder='Email address' />
                     </div>
                     <div className="inp_btn col-md-3">
 

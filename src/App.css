@@ -20,6 +20,11 @@
   transform: translate(-50%, -50%);
   color: white;
 }
+h1,h2,h3,h4,h5,h6{
+  color: white;
+  font-family: 'Roboto', sans-serif;
+
+}
 .catch-clause{
   width: 90%;
   font-family: 'Roboto', sans-serif;
@@ -29,7 +34,7 @@
   width: 100%;
 }
 .join-form>.row>.inp>input{
-  padding: 25px;
+  padding: 15px;
 }
 .desc{
   padding-top: 10vh;
@@ -71,6 +76,32 @@
   position: sticky;
   z-index: 1;
 }
+.auth-group{
+  min-height: 100vh;
+  background-image:linear-gradient(to bottom, rgba(33, 29, 29, 0.344) 0%, rgba(7, 10, 12, 0.977) 100%), url('/public/background.jpg');
+}
+.login-card{
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.583);
+  padding: 50px 40px 50px 40px;
+  min-height: 60vh;
+  min-width: 30vw;
+  background-color: rgba(0, 0, 0, 0.823);
+}
+.login-section{
+  position: absolute;
+  top:50%;
+  left: 45%;
+  transform: translate(-50%,-50%);
+}
+
+.auth-input,.auth-input:focus{
+  border: none;
+  background: rgba(84, 81, 81, 0.789);
+  padding: 10px;
+  color:white;
+}
+/* small screen */
 
 @media screen and (max-width: 768px){
   .feature-image{
@@ -89,5 +120,31 @@
   }
   .inp,.inp_btn{
     width: 100vw;
+  }
+
+  .auth-group{
+    min-height: 100vh;
+    background-image:linear-gradient(to bottom, rgba(33, 29, 29, 0.344) 0%, rgba(7, 10, 12, 0.977) 100%), url('/public/background.jpg');
+  }
+  .login-card{
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.583);
+    padding: 50px 40px 50px 40px;
+    min-height: 30vh;
+    min-width: 95vw;
+    background-color: rgba(0, 0, 0, 0.823);
+  }
+  .login-section{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  
+  .auth-input,.auth-input:focus{
+    border: none;
+    background: rgba(84, 81, 81, 0.789);
+    padding: 10px;
+    color:white;
   }
 }
