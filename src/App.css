@@ -1,38 +1,93 @@
-.App {
-  text-align: center;
+.nav{
+  padding: 20px;
+  z-index: 2;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.679) ;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.auth{
+  margin-left: auto;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.top-section{
+  min-height: 80vh;
+  background-size: cover;
+  background-image:linear-gradient(to bottom, rgba(33, 29, 29, 0.344) 0%, rgba(7, 10, 12, 0.977) 100%), url('/public/background.jpg');
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.join-section{
+  position:absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: white;
 }
+.catch-clause{
+  width: 90%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 4rem;
+}
+.row{
+  width: 100%;
+}
+.join-form>.row>.inp>input{
+  padding: 25px;
+}
+.desc{
+  padding-top: 10vh;
+  color: white;
+}
+.desc>h1{
+  font-family: 'Roboto', sans-serif;
+}
+.footer-link{
+  color:grey;
+  text-decoration: none;
+  font-size: 14px;
 
-.App-link {
-  color: #61dafb;
+}
+.footer-link:hover{
+  color:rgb(246, 240, 240);
+  text-decoration: none;
+  font-size: 14px;
+}
+.footer{
+  padding-bottom: 10vh;
+}
+#vid-bg{
+  position: relative;
+  left: 0;
+  right: 10;
+  top: -50%;
+  bottom: 0;
+}
+.feature-image{
+  height: 400px;
+  background-size: cover;
+}
+.f-r{
+  margin: 5vh;
+  padding-bottom: 30px;
+}
+.tv-overlay{
+  position: sticky;
+  z-index: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media screen and (max-width: 768px){
+  .feature-image{
+    width: 100%;
   }
-  to {
-    transform: rotate(360deg);
+  .f-r{
+    margin: 0vh;
+    border-bottom: 5px solid rgba(128, 128, 128, 0.109);
+    padding-bottom: 30px;
+  }
+  .catch-clause{
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    padding-top: 20vh;
+  }
+  .inp,.inp_btn{
+    width: 100vw;
   }
 }
