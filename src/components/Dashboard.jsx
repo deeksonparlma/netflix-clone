@@ -1,8 +1,12 @@
+import { async } from '@firebase/util';
 import { query, collection, getDocs, where } from 'firebase/firestore';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import movies from '../data/Data';
 import { auth, db, getUser, LogOut } from './Firebase'
+import Footer from './Footer';
+import Movie from './Movie';
 
 
 function Dashboard() {
@@ -12,10 +16,37 @@ function Dashboard() {
     const [name, setName] = useState("");
     const [url, setIcon] = useState("volumeup.png");
 
+    const [viewMovie, setViewMovie] = useState('')
+
+    const [allMovies, setMovies] = useState([])
+
     const [end, setVideo] = useState(true);
     const [muteStat, setMuteState] = useState(true);
 
-    
+    const [show,setShow] = useState('none');
+
+    useEffect(() => {
+        const getMovies = async () => {
+            const moviesServer = await fetchMovies()
+            setMovies(moviesServer)
+        }
+        getMovies()
+    }, [])
+
+    // adding
+
+    // const addMovie = (newMovie) => {
+    //     setMovies([...movies, newMovie])
+    // }
+
+    // get data
+
+    const fetchMovies = async () => {
+        const data = await movies
+        return data
+    }
+
+
 
 
     const fetchUserName = async () => {
@@ -25,7 +56,7 @@ function Dashboard() {
             const data = doc.docs[0].data();
             setName('Welcome ' + data.name);
         } catch (err) {
-            alert("An error occured while fetching user data");
+            // alert("An error occured while fetching user data");
             // console.error(err);
         }
     }
@@ -47,16 +78,26 @@ function Dashboard() {
         setVideo('hidden');
     }
 
-    function muteVideo(){
-        if(muteStat){
+    function muteVideo() {
+        if (muteStat) {
             setIcon("mute.png")
         }
-        else{
+        else {
             setIcon("volumeup.png")
         }
         setMuteState(!muteStat)
     }
 
+    const showMovie = (movie) => {
+        setViewMovie(movie)
+    }
+    const hideOverlay = () => {
+        setShow('none')
+    }
+    
+    const showMovieOverlay = () => {
+        setShow('')
+    }
 
     return (
         <div className='body'>
@@ -87,6 +128,40 @@ function Dashboard() {
                 <h3 style={{ color: 'red' }}>{name}</h3>
                 <button className='btn btn-info' onClick={() => signOut()}>Sign Out</button>
             </center>
+            <br />
+            <h1>Movies</h1>
+
+            <div className="movies row">
+
+                {allMovies.map((movie) => (
+
+                    <Movie display={showMovieOverlay} key={movie.id} onClick={showMovie} movie={movie} />
+
+                ))}
+            <Footer/>
+
+
+            </div>
+            <br />
+
+            <div onClick={hideOverlay} style={{display:show}} className="movie-overlay">
+                <div className="movie-overlay-center">
+
+
+
+                    <div className='detail-image' style={{ backgroundImage: `url(${viewMovie.url})`}} alt="movie" />
+                    <div className="container">
+                        <span>Title </span><h4>{viewMovie.title}</h4>
+                        <span>Genre </span><h4>{viewMovie.genre}</h4>
+                        <span>Duration </span><h4>{viewMovie.duration}</h4>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
         </div>
     )
 }

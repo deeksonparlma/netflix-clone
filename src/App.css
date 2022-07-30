@@ -157,12 +157,68 @@ a:hover,.footer-link:hover{
   font-size: 18px;
   color:white;
 }
-.body{
+.body,body{
   background-color: black;
   min-height: 100vh;
 }
 .top-logo-genre{
   height: 50px;
+}
+
+.movies{
+
+  display: flex;
+  flex-direction: row;
+  
+   flex-wrap: wrap; 
+  
+  height: 200px;
+  padding: 10px;
+  width: 100%;
+  
+
+
+}
+.movie{
+  margin: 5px;
+  height: 200px;
+  width: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  
+}
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+.movie-title{
+  padding-top: 150px;
+}
+
+.movie-overlay-center{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 50px 20% 10% 20%;
+  height: 90vh;
+  border-radius: 20px;
+  background-color: black;
+}
+.movie-overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.552);
+}
+.detail-image{
+  height: 30vh;
+  background-position: center;
 }
 /* small screen */
 
@@ -265,5 +321,45 @@ a:hover,.footer-link:hover{
   }
   .top-logo-genre{
     height: 10px;
+  }
+  .movie{
+    margin: 5px;
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    
+  }
+  /* .movie-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    height: 90vh;
+    border-radius: 20px;
+    background-color: black;
+  } */
+  .movie-overlay-center{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 30px;
+    height: 90vh;
+    border-radius: 20px;
+    background-color: black;
+  }
+  .movie-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.552);
   }
 }
