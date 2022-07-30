@@ -6,14 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Nav from './components/Nav';
 import Authentication from './components/Authentication';
+import Dashboard from './components/Dashboard';
+import { auth } from './components/Firebase';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+var user = auth.currentUser ;
 root.render(
   <BrowserRouter>
-    <Nav/>
+    <Nav Logged={user}/>
     <Routes>
       <Route path='/' element={<App/>} />
       <Route path='/authentication' element={<Authentication/>} />
+      <Route path='/dashboard' element={<Dashboard/>} />
 
     </Routes>
   </BrowserRouter>

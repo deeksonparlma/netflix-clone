@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom'
+import { auth, getUser } from './Firebase';
 
-const Nav = () => {
+const Nav = (props) => {
+
+  const [user, loading, error] = useAuthState(auth);
+  const [isLoggedIn,setLoggedIn] = useState('');
+
+  
+  // props.Logged == null ?  setLoggedIn(' ') : setLoggedIn('none');
+
   return (
     <div>
       <div className="nav">
@@ -19,8 +28,9 @@ const Nav = () => {
           <NavLink
             to={'/authentication'}
             axact
+            style={{display: isLoggedIn}}
           >
-            <button className="sign-in btn btn-danger" style={{background:'red'}}>Sign In</button>
+            <button className="sign-in btn btn-danger" style={{background:'red' }}>Sign In</button>
 
           </NavLink>
         </div>

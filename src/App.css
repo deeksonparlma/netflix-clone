@@ -43,13 +43,13 @@ h1,h2,h3,h4,h5,h6{
 .desc>h1{
   font-family: 'Roboto', sans-serif;
 }
-.footer-link{
+a,.footer-link{
   color:grey;
   text-decoration: none;
   font-size: 14px;
 
 }
-.footer-link:hover{
+a:hover,.footer-link:hover{
   color:rgb(246, 240, 240);
   text-decoration: none;
   font-size: 14px;
@@ -101,6 +101,69 @@ h1,h2,h3,h4,h5,h6{
   padding: 10px;
   color:white;
 }
+
+.error{
+  color: red;
+}
+
+.top-video{
+  /* min-height: 80vh; */
+  width: 100%;
+  /* background-image: url('/public/banner.webp'); */
+  background-size: cover;
+  background-position: top;
+}
+.top-rank-video{
+  width: 100%;
+  display: '';
+  
+}
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 115vh;
+  background-image:linear-gradient(to bottom, rgba(33, 29, 29, 0.344) 0%, rgba(7, 10, 12, 0.977) 100%);
+}
+.overlay>.x{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.overlay>.x>.content{
+  padding-left: 10px;
+  width: 30%;
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 50vh;
+}
+.overlay>.x>button{
+  background  : none;
+  position: absolute;
+  margin-right: 10%;
+  pad: 10px;
+  border: none;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 40vh;
+  border: 1px solid white;
+    border-radius: 10px;
+}
+.x>button>img{
+  height: 40px;
+}
+.overlay>.x>.content>p{
+  font-size: 18px;
+  color:white;
+}
+.body{
+  background-color: black;
+  min-height: 100vh;
+}
+.top-logo-genre{
+  height: 50px;
+}
 /* small screen */
 
 @media screen and (max-width: 768px){
@@ -146,5 +209,61 @@ h1,h2,h3,h4,h5,h6{
     background: rgba(84, 81, 81, 0.789);
     padding: 10px;
     color:white;
+  }
+
+
+  .top-video{
+    /* min-height: 80vh; */
+    width: 100%;
+    /* background-image: url('/public/banner.webp'); */
+    background-size: cover;
+    background-position: top;
+  }
+  .top-rank-video{
+    width: 100%;
+    display: '';
+    
+  }
+  .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 37vh;
+    background-image:linear-gradient(to bottom, rgba(33, 29, 29, 0.344) 0%, rgba(7, 10, 12, 0.977) 100%);
+  }
+  .overlay>.x{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .overlay>.x>.content{
+    padding-left: 10px;
+    width: 30%;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 0vh;
+  }
+  .overlay>.x>button{
+    background  : none;
+    position: absolute;
+    margin-right: 10%;
+    pad: 10px;
+    border: none;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 0.5vh;
+    /* border: 1px solid white; */
+    border-radius: 10px;
+  }
+  .x>button>img{
+    height: 20px;
+  }
+  .overlay>.x>.content>p{
+    font-size: 8px;
+    color:white;
+  }
+  .top-logo-genre{
+    height: 10px;
   }
 }
