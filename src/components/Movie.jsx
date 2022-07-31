@@ -10,7 +10,7 @@ function Movie(props) {
     return (
         <div onClick={movieClicked} className="movie" style={{ backgroundImage: `url(${props.movie.url})` }}>
             {/* <img src={movie.url} alt="" /> */}
-            <h4 className='movie-title'>{props.movie.title}</h4>
+            <h4 className='movie-title'>{props.movie.title } {props.movie.id}</h4>
         </div>
     )
 }

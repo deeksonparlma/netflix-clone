@@ -25,6 +25,9 @@ function Dashboard() {
 
     const [show,setShow] = useState('none');
 
+
+  
+
     useEffect(() => {
         const getMovies = async () => {
             const moviesServer = await fetchMovies()
@@ -99,6 +102,16 @@ function Dashboard() {
         setShow('')
     }
 
+    // useEffect(() => {
+    //     if (loading) {
+    //         // maybe trigger a loading screen
+    //         alert('loading')
+    //         return;
+    //     }
+
+    //     if (user) navigate("/dashboard");
+    // }, [user, loading]);
+
     return (
         <div className='body'>
 
@@ -151,7 +164,7 @@ function Dashboard() {
 
                     <div className='detail-image' style={{ backgroundImage: `url(${viewMovie.url})`}} alt="movie" />
                     <div className="container">
-                        <span>Title </span><h4>{viewMovie.title}</h4>
+                        <span>Title </span><h4>{viewMovie.title} </h4>
                         <span>Genre </span><h4>{viewMovie.genre}</h4>
                         <span>Duration </span><h4>{viewMovie.duration}</h4>
 
