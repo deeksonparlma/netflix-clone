@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, logInWithEmailAndPassword, registerWithEmailAndPassword, signInWithGoogle } from './Firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { Bars, ThreeDots } from 'react-loader-spinner';
 
 function Authentication() {
     document.title = "Netflix | Authentication"
@@ -14,6 +15,9 @@ function Authentication() {
     const [user, loading, error] = useAuthState(auth);
     const [showLogin, setLogin] = useState('');
     const [showSignUp, setSignUp] = useState('none');
+    const [isLoading, setLoading] = useState(false);
+    const [googleIsLoading, setGoogleLoading] = useState(false);
+
 
 
     //sign up 
@@ -30,13 +34,18 @@ function Authentication() {
             setError("Please fill all the fields");
         }
         else {
+            setLoading(true)
+
             try {
                 await signInWithEmailAndPassword(auth, email, password);
                 navigate("/dashboard");
             } catch (err) {
                 console.error(err);
                 setError("Invalid login credentials");
+                setLoading(false)
+
             }
+
         }
     };
 
@@ -46,6 +55,7 @@ function Authentication() {
             setError("Please fill all the fields");
         }
         else {
+            setLoading(true)
             try {
                 const res = await createUserWithEmailAndPassword(auth, email, password);
                 const user = res.user;
@@ -60,24 +70,13 @@ function Authentication() {
                 navigate("/dashboard");
             } catch (err) {
                 setError(err.toString());
+                setLoading(false)
                 // alert(err.message);
             }
         }
     };
 
-    // function login(em, pass) {
-    //     if (em != null && pass != null) {
-    //         await logInWithEmailAndPassword(em, pass)
-    //             .then(() => {
-    //                 navigate("/dashboard");
-    //             })
-    //             .catch(error => {
-    //                 console.log(error);
-    //                 setError("Invalid login credentials");
-    //             }
-    //             );
-    //     }
-    // }
+
     function hideLogin() {
         setLogin('none');
         setSignUp('');
@@ -92,6 +91,7 @@ function Authentication() {
             // maybe trigger a loading screen
             return;
         }
+
         if (user) navigate("/dashboard");
     }, [user, loading]);
 
@@ -111,20 +111,14 @@ function Authentication() {
                             {/* <form> */}
                             <p className='error'>{invalid_login}</p>
 
-                            {/* <div class="form-outline">
-                                    <i class="fas fa-exclamation-circle trailing"></i>
-                                    <input style={{border:'2px solid white',color:'white'}} type="text" id="form1" class="form-control auth-inp form-icon-trailing" />
-                                    <label class="form-label" for="form1" style={{color:'white'}}>Email</label>
-                                </div> */}
-
 
                             <label htmlFor="">Email</label>
                             <input type="email" name="" className='form-control auth-input' required placeholder='Email or Phone number' id="" onChange={(e) => setEmail(e.target.value) & setError('')} /><br />
                             <label htmlFor="">Password</label>
                             <input type="password" name="" className='form-control auth-input' required placeholder='Password' id="" onChange={(e) => setPassword(e.target.value) & setError('')} />
                             <br />
-                            <button style={{ background: 'red' }} className="btn form-control btn-danger" onClick={() => login(email, password)}>
-                                Sign in
+                            <button style={{ background: 'red',alignItems:'center' }} className="btn form-control btn-danger" onClick={() => login(email, password)}>
+                                {isLoading ? <center><ThreeDots color="#ffffff" height={20} width={100} /></center> : 'Sign in'}
                             </button>
                             <br />
                             <br />
@@ -186,7 +180,8 @@ function Authentication() {
                             <input type="password" name="" className='form-control auth-input' required placeholder='Password' id="" onChange={(e) => setsignUpPassword(e.target.value) & setError('')} />
                             <br />
                             <button style={{ background: 'red' }} className="btn form-control btn-danger" onClick={() => signUp(signUpUsername, signUpemail, signUpPassword)}>
-                                Sign Up
+                            {isLoading ? <center><ThreeDots color="#ffffff" height={20} width={100} /></center> : 'Sign Up'}
+                                
                             </button>
                             <br />
                             <br />
@@ -208,7 +203,7 @@ function Authentication() {
                                 </div>
                                 <br /><br /><br />
                                 <span onClick={hideSignUp}>Already have a Netflix account ?</span>
-                                <a onClick={hideSignUp}> Login </a>
+                                <a onClick={hideSignUp}> Login  </a>
 
                             </div>
                             {/* </form> */}
